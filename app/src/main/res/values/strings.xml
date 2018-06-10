@@ -14,4 +14,6 @@
     <string name="alertImagem">Selecione a fonte</string>
     <string name="camera">Camera</string>
     <string name="galeria">Galeria</string>
+    <string name="camera_permission">É necessário permitir a utilização da camera!</string>
+    <string name="ok">OK</string>
 </resources>
