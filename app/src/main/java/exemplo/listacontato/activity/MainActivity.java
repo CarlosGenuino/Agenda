@@ -1,5 +1,6 @@
 package exemplo.listacontato.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -10,8 +11,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import exemplo.listacontato.R;
+import exemplo.listacontato.model.Contato;
 
 public class MainActivity extends AppCompatActivity {
+
+    private final int REQUEST_NEW = 1;
+    private final int REQUEST_EDIT = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +29,20 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, ContatoEditActivity.class);
+                intent.putExtra(getString(R.string.contato), new Contato());
+                startActivityForResult(intent, REQUEST_NEW);
             }
         });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == REQUEST_NEW && resultCode == RESULT_OK){
+            //criar contato
+        } else if(requestCode == REQUEST_EDIT && resultCode == RESULT_OK){
+            //editar contato
+        }
     }
 
     @Override
