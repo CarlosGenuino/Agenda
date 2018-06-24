@@ -16,6 +16,8 @@
             android:layout_width="75dp"
             android:layout_height="75dp"
             android:layout_marginLeft="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             app:srcCompat="@drawable/baseline_insert_photo_24" />
 
         <LinearLayout

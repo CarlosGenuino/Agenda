@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                                 break;
                             case 1:
                                 Intent intent1 = new Intent(MainActivity.this, ContatoEditActivity.class);
-                                intent1.putExtra(getString(R.string.contato), new Contato());
+                                intent1.putExtra(getString(R.string.contato), contato);
                                 startActivityForResult(intent1, REQUEST_EDIT);
                                 break;
                             case 2:
@@ -90,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
                                 contatos.remove(contato);
                                 dao.deleteContato(contato);
                                 adapter.notifyDataSetChanged();
+                                Toast.makeText(MainActivity.this, getText(R.string.contato_excluido), Toast.LENGTH_SHORT).show();
                                 break;
                         }
                     }
@@ -118,23 +120,21 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.orderar_az) {
+            contatos = dao.getListarContato(ContatoDao.ASC);
+        } else if(id == R.id.orderar_za){
+            contatos = dao.getListarContato(ContatoDao.DESC);
         }
-
-        return super.onOptionsItemSelected(item);
+        adapter = new ContatoAdapter(contatos);
+        recyclerContato.setAdapter(adapter);
+        return true;
     }
 }

@@ -3,8 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="exemplo.listacontato.activity.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/orderar_az"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="@string/ordenar_az"
+        app:showAsAction="" />
+    <item
+        android:id="@+id/orderar_za"
+        android:orderInCategory="100"
+        android:title="@string/ordenar_za"
         app:showAsAction="" />
 </menu>
